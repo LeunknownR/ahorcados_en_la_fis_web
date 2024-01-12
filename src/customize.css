@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'LexendExa';
+    src: url('/fonts/Lexend/LexendExa-Light.ttf');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'LexendExa';
+    src: url('/fonts/Lexend/LexendExa-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'LexendExa';
+    src: url('/fonts/Lexend/LexendExa-Medium.ttf');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'LexendExa';
+    src: url('/fonts/Lexend/LexendExa-Bold.ttf');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'DeathNote';
+    src: url('/fonts/DeathNote.ttf');
+    font-weight: 400;
+}
+:root {
+    /* Color Palette */
+    --primary: #B287FC;
+    --secondary: #F391D7;
+    --tertiary: #EAF2FB;
+    --fourth: #FF61FF;
+    --primary-dark: #2E2440;
+    --secondary-dark: #451261;
+    --tertiary-dark: #5D0E5D;
+    --placeholder: #60527A;
+    --overlay: #0B191EBD;
+    --black: #000000;
+    --gray: #A6A6A6;
+    --primary-dark-transparent: #862D8680;
+    --primary-fourth-transparent: #FF9FFF66;
+}
+
+* {
+    font-family: 'LexendExa', sans-serif;
+}
+body {
+    background-color: var(--primary);
+}
