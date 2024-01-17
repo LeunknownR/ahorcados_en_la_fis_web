@@ -16,6 +16,9 @@ export const Container = styled.button`
     &.medium {
         font-size: 15px;
     }
+    &.big {
+        font-size: 24px;
+    }
     &.secondary {
         background-color: transparent;
         border-color: transparent;

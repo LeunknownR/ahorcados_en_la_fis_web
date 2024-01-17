@@ -1,3 +1,3 @@
-# Ahorcados en la FIS
+# Ahorcados en la FIS Web
 
-Juego "Ahorcado" online realizado con React JS y Node JS con Socket.io.
+Juego web online basado en el juego "Ahorcado". desarrollado con React JS y Node JS con Socket.IO.

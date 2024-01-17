@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const usePhraseList = () => {
-    const [phraseList, setPhraseList] = useState(Array(10).fill(0).map((_, idx) => `Item ${idx}`));
+    const [phraseList, setPhraseList] = useState([]);
     const add = newPhrase => {
         setPhraseList(prev => ([
             ...prev,

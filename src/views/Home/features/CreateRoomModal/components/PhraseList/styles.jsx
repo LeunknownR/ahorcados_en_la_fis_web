@@ -41,14 +41,3 @@ export const Phrase = styled.li`
         color: var(--secondary-dark);
     }
 `;
-export const RemovePhraseButton = styled.button`
-    border: 0;
-    background-color: transparent;
-    cursor: pointer;
-    & svg {
-        transition: 0.35s;
-    }
-    &:hover svg {
-        rotate: 180deg;
-    }
-`;

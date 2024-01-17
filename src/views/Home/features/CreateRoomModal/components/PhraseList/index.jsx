@@ -1,5 +1,5 @@
-import { Container, Content, Phrase, RemovePhraseButton } from "./styles";
-import CrossIcon from "../../../../../../icons/CrossIcon";
+import { Container, Content, Phrase } from "./styles";
+import RemoveCrossButton from "../../../../../../components/RemoveCrossButton";
 
 const PhraseList = ({
     phraseList
@@ -10,9 +10,8 @@ const PhraseList = ({
                 {phraseList.value.map((phrase, index) => (
                     <Phrase key={index}>
                         <span>{phrase}</span>
-                        <RemovePhraseButton onClick={() => phraseList.remove(phrase)}>
-                            <CrossIcon/>
-                        </RemovePhraseButton>
+                        <RemoveCrossButton 
+                            onClick={() => phraseList.remove(phrase)}/>
                     </Phrase>
                 ))}
             </Content>

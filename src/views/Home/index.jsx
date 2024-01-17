@@ -37,7 +37,7 @@ const Home = () => {
                 </Footer>
                 {/* Decoration */}
                 <AngelImage/>
-                <AngelImage isRight/>
+                <AngelImage className="right"/>
                 {/* Modals */}
                 <CreateRoomModal modal={createRoomModal}/>
                 <JoinRoomModal modal={joinRoomModal}/>
