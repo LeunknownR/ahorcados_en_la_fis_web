@@ -1,13 +1,13 @@
 import { CardMessage } from "../../../../components/styles";
 import { Container, ReiApprovingImage } from "./styles";
 
-const WaitingMessage = () => {
+const WaitingMessage = ({
+    children
+}) => {
     return (
         <Container>
             <ReiApprovingImage/>
-            <CardMessage>
-                El adivino al que le compartiste el ID está corriendo como Rei...
-            </CardMessage>
+            <CardMessage>{children}</CardMessage>
             <ReiApprovingImage className="right"/>
         </Container>
     );

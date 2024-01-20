@@ -1,0 +1,33 @@
+body {
+    background-color: var(--primary);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+@keyframes startAnimation {
+    from {
+        scale: 0;
+        rotate: 0;
+    }
+    to {
+        scale: 1;
+        rotate: 360deg;
+    }
+}
+main {
+    display: grid;
+    place-items: center;
+    gap: 25px;
+    margin: 30px;
+    animation: linear startAnimation 0.2s;
+}
+p {
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 22px;
+    text-align: center;
+    margin: 0;
+}
+img {
+    width: 40%;
+}

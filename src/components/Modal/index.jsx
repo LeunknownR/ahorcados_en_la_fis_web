@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import { Window, Overlay, Container } from "./styles";
 
-const $portals = document.getElementById("portals");
+const $modals = document.getElementById("modals");
 const Modal = ({
     children, modal
 }) => {
@@ -12,7 +12,7 @@ const Modal = ({
                 {children}
             </Window>
         </Container>, 
-        $portals
+        $modals
     );
 }
 

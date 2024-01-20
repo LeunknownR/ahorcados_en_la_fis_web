@@ -1,8 +1,9 @@
 import { Flex, Descriptor, DescriptorValue, Divider } from "../../../components/styles";
 import { Container, NicknameField } from "./styles";
 
-const nickname = "leunknownr", roomId = "p0ZoB1FwH6";
-const RoomData = () => {
+const RoomData = ({
+    nickname, roomId
+}) => {
     return (
         <Container>
             <NicknameField>

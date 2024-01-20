@@ -15,10 +15,12 @@ export const Main = styled.main`
     justify-content: center;
     min-height: 100vh;
 `;
-export const Container = styled.section`
+export const Grid = styled.section`
     position: relative;
-    display: grid;
     padding: 30px 130px;
     flex-grow: 1;
     gap: 20px;
+    display: grid;
+    grid-template-rows: max-content 1fr max-content;
+    grid-template-columns: 1fr 30%;
 `;

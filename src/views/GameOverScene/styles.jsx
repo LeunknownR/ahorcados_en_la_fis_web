@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import { Container as ContainerBase } from "../components/styles";
+import { Grid } from "../components/styles";
 import { CardImage } from "../../components/styles";
 
 export const MainImage = styled(CardImage)`
     grid-area: mainimage;
 `;
-export const Container = styled(ContainerBase)`
-    grid-template-rows: max-content 1fr max-content;
-    grid-template-columns: 1fr 38%;
+export const Container = styled(Grid)`
     grid-template-areas: 
-        "header sideimage"
+        "roomdata sideimage"
         "mainimage sideimage"
         "dialog dialog"
 `;

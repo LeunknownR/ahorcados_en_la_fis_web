@@ -4,6 +4,7 @@ import { Main } from "./views/components/styles";
 import WaitingRoom from "./views/WaitingRoom";
 import GameOverScene from "./views/GameOverScene";
 import ABSOLUTE_PATHS from "./config/absolutePaths";
+import Game from "./views/Game";
 
 const App = () => {
 	return (
@@ -16,6 +17,9 @@ const App = () => {
 					<Route
 						path={ABSOLUTE_PATHS.WAITING_ROOM}
 						element={<WaitingRoom/>}/>
+					<Route
+						path={ABSOLUTE_PATHS.GAME}
+						element={<Game/>}/>
 					<Route
 						path={ABSOLUTE_PATHS.GAME_OVER_SCENE}
 						element={<GameOverScene/>}/>

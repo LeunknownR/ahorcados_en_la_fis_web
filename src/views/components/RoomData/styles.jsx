@@ -8,5 +8,5 @@ export const Container = styled(Card).attrs({
     gap: "40px",
     as: "header"
 })`
-    grid-area: header;
+    grid-area: roomdata;
 `;

@@ -3,7 +3,8 @@ import { Card } from "../../../../components/styles";
 import reiApproving from "../../../../images/rei_approving.png";
 
 export const Container = styled(Card).attrs({
-    as: "footer"
+    as: "footer",
+    padding: "15px 50px"
 })`
     grid-area: message;
     display: flex;

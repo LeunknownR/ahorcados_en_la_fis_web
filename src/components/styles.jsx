@@ -9,6 +9,8 @@ export const Flex = styled.div`
     display: flex;
     flex-direction: ${({ direction = "row" }) => direction};
     gap: ${({ gap = "10px" }) => gap};
+    justify-content: ${({ justify = "flex-start" }) => justify};
+    width: ${({ width = "unset" }) => width};
     align-items: center;
 `;
 export const Card = styled(Flex).attrs({
@@ -24,7 +26,7 @@ export const Card = styled(Flex).attrs({
 export const CardImage = styled(Card).attrs({
     padding: "0"
 })`
-    background-image: url(${({ imageUrl }) => imageUrl});
+    background-image: ${({ imageUrl }) => imageUrl ? `url(${imageUrl})` : "unset"};
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -39,7 +41,7 @@ export const CardMessage = styled.h5`
 `;
 export const Descriptor = styled.span`
     color: var(--black);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     &.small {
         font-size: 14px;
@@ -47,10 +49,10 @@ export const Descriptor = styled.span`
 `;
 export const DescriptorValue = styled.span`
     color: var(--secondary-dark);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     &.small {
-        font-size: 16px;
+        font-size: 14px;
     }
 `;
 export const Divider = styled.hr`
@@ -63,5 +65,19 @@ export const Divider = styled.hr`
         width: 100%;
         height: 5px;
     }
-    /* flex-grow: 1; */
+`;
+export const ButtonLink = styled.button`
+    border: 0;
+    background-color: transparent;
+    font-size: 16px;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    color: var(--secondary-dark);
+    transition: 0.3s;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        color: var(--tertiary-dark);
+    }
 `;
