@@ -6,8 +6,9 @@ import reiPointingBottomImg from "../../../../../../images/rei_pointing_bottom.p
 export const Container = styled(Card)`
     grid-area: main;
     position: relative;
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 const ReiPointing = styled.img`
     position: absolute;

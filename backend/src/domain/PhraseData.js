@@ -5,25 +5,25 @@ import { simpleStringsAreEquals } from "../utils/string.js";
 export default class PhraseData {
     constructor(phrase) {
         this.phrase = phrase;
-        this.characterList = this.#toCharacterList();
-        this.usedKeys = new Set();
+        this.dataCharacterList = this.#toDataCharacterList();
+        this.usedKeys = [];
         this.lifes = MAX_LIFES; 
     }
     useKey(key) {
-        this.usedKeys.add(key);
+        this.usedKeys.push(key);
     }
     searchCharacter(key) {
         let someCharacterFound = false;
-        this.characterList.forEach(character => {
-            if (!simpleStringsAreEquals(character.value, key)) return;
-            character.found = true;
+        this.dataCharacterList.forEach(dataCharacter => {
+            if (!simpleStringsAreEquals(dataCharacter.value, key)) return;
+            dataCharacter.found = true;
             someCharacterFound = true;
         });
         if (!someCharacterFound) 
             this.#draw();
     }
     phraseCompleted() {
-        return this.characterList.every(character => character.found);
+        return this.dataCharacterList.every(dataCharacter => dataCharacter.found);
     }
     #draw() {
         this.lifes--;
@@ -34,19 +34,27 @@ export default class PhraseData {
     /**
      * @return {PhraseDataCharacter[]} 
      */
-    #toCharacterList() {
+    #toDataCharacterList() {
         const { phrase } = this;
-        const characterList = [];
-        for (let i = 0; i < characterList.length; i++) {
+        const dataCharacterList = [];
+        for (let i = 0; i < phrase.length; i++) {
             const character = phrase.charAt(i);
             if (character === " ") continue;
-            characterList.push(
+            dataCharacterList.push(
                 new PhraseDataCharacter({
                     character,
                     nextCharacter: phrase.charAt(i + 1)
                 })
             );
         }
-        return characterList;
+        return dataCharacterList;
+    }
+    toLiteralObject() {
+        return {
+            phrase: this.phrase,
+            dataCharacterList: this.dataCharacterList.map(dataCharacter => dataCharacter.toLiteralObject()),
+            lifes: this.lifes,
+            usedKeys: this.usedKeys
+        };
     }
 }

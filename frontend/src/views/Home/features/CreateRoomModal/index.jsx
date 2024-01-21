@@ -7,12 +7,23 @@ import Button from "../../../../components/Button";
 import PhraseBlock from "./components/PhraseBlock";
 import { ErrorMessage } from "../../../../components/styles";
 import PhraseField from "./components/PhraseField";
+import useCreateRoom from "./utils/hooks/useCreateRoom";
+import { useEffect } from "react";
 
 const CreateRoomModal = ({
-    modal
+    modal, nickname
 }) => {
     const phrase = usePhrase();
     const phraseList = usePhraseList(phrase);
+    const createRoom = useCreateRoom({
+        nickname, phrases: phraseList.value,
+    });
+    useEffect(() => {
+        if (!modal.show) {
+            phrase.clear();
+            phraseList.clear();
+        }
+    }, [modal.show]);
     return (
         <Modal modal={modal}>
             <Container>
@@ -32,6 +43,7 @@ const CreateRoomModal = ({
                     <Button
                         className="medium"
                         text="Crear sala"
+                        onClick={createRoom}
                         disabled={phraseList.isEmpty()}/>
                 </Footer>
             </Container>

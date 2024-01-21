@@ -4,16 +4,32 @@ import RoomData from "../components/RoomData";
 import ShinjiWaiting from "./components/ShinjiWaiting";
 import WaitingRoomSoothsayer from "./features/WaitingRoomSoothsayer";
 import WaitingRoomMaster from "./features/WaitingRoomMaster";
+import useGameContext from "../Game/utils/context/useGameContext";
+import GameRoomStatus from "../../services/gameService/GameRoomStatus";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ABSOLUTE_PATHS from "../../config/absolutePaths";
 
-const nickname = "leunknownr", roomId = "p0ZoB1FwH6";
 const WaitingRoom = () => {
+    const { gameData, isMaster, getUserNickname } = useGameContext();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (gameData.status === GameRoomStatus.InGame)
+            navigate(ABSOLUTE_PATHS.GAME);
+    }, []);
+    function isWaiting() {
+        return [GameRoomStatus.Created, GameRoomStatus.WaitingStart].includes(gameData.status);
+    }
+    if (!isWaiting()) 
+        return null;
     return (
         <Container>
             <ExitButton/>
-            <RoomData nickname={nickname} roomId={roomId}/>
+            <RoomData nickname={getUserNickname()} roomId={gameData.id}/>
             <ShinjiWaiting/>
-            <WaitingRoomMaster/>
-            {/* <WaitingRoomSoothsayer/> */}
+            {isMaster 
+            ? <WaitingRoomMaster/>
+            : <WaitingRoomSoothsayer/>}
         </Container>
     );
 }

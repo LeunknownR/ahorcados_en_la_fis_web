@@ -29,4 +29,7 @@ export default class GameRoomRepository {
     find(roomId) {
         return this.#gameRoomList.get(roomId) || null;
     }
+    remove(roomId) {
+        return this.#gameRoomList.delete(roomId);
+    }
 }

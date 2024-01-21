@@ -3,12 +3,27 @@ import Button from "../../../../components/Button";
 import { Container } from "./styles";
 import { Footer, TextField } from "../styles";
 import useRoomId from "./utils/hooks/useRoomId";
+import useJoinRoom from "./utils/hooks/useJoinRoom";
+import FullRoomModal from "./components/FullRoomModal";
+import NotFoundRoomModal from "./components/NotFoundRoomModal";
+import { useEffect } from "react";
 
 const JoinRoomModal = ({
-    modal
+    modal, nickname
 }) => {
     const roomId = useRoomId();
+    useEffect(() => {
+        if (!modal.show)
+            roomId.clear();
+    }, [modal.show]);
+    const {
+        notFoundRoomModal, fullRoomModal,
+        joinRoom
+    } = useJoinRoom({
+        nickname, roomId: roomId.value
+    });
     return (
+        <>
         <Modal modal={modal}>
             <Container>
                 <TextField
@@ -23,10 +38,15 @@ const JoinRoomModal = ({
                         onClick={modal.hide}/>
                     <Button
                         className="medium"
-                        text="Ingresar"/>
+                        text="Ingresar"
+                        onClick={joinRoom}
+                        disabled={roomId.isEmpty()}/>
                 </Footer>
             </Container>   
         </Modal>
+        <FullRoomModal modal={fullRoomModal}/>
+        <NotFoundRoomModal modal={notFoundRoomModal}/>
+        </>
     );
 }
 

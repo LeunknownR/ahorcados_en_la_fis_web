@@ -6,4 +6,11 @@ export default class PhraseDataCharacter {
         this.found = false;
         this.nextIsSpace = nextCharacter === " ";
     }
+    toLiteralObject() {
+        return {
+            value: this.value,
+            found: this.found,
+            nextIsSpace: this.nextIsSpace
+        };
+    }
 }

@@ -2,10 +2,8 @@ import styled, { keyframes } from "styled-components";
 
 const animation = keyframes`
     from {
-        box-shadow: 0 0 50px var(--fourth);
     }
     to {
-        box-shadow: 0 0 100px var(--fourth);
     }
 `;
 
@@ -16,18 +14,16 @@ export const Container = styled.div`
     background-color: var(--overlay);
     width: 100%;
     height: 100%;
-    transition: 0.3s;
+    transition: 0.25s;
     display: grid;
     place-items: center;
-    z-index: 2;
-    & span {
+    z-index: 3;
+    & img {
         display: block;
-        width: 50px;
-        height: 50px;
-        background-color: var(--fourth);
-        border-radius: 100%;
+        width: 40%;
+        height: 40%;
         animation: linear ${animation} 0.4s alternate-reverse infinite;
-        filter: blur(5px);
+        filter: blur(2px);
     }
     &.hidden {
         opacity: 0;

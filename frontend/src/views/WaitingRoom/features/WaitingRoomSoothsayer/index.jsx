@@ -6,7 +6,7 @@ const WaitingRoomSoothsayer = () => {
         <>
             <ReiGangnamStyle/>
             <WaitingMessage>
-                Esperando a que el máster inicie el juego...
+                Esperando a que el master inicie el juego...
             </WaitingMessage>
         </>
     );

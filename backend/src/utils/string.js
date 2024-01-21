@@ -8,5 +8,5 @@ export function toStringFullTrimmed(value) {
     return removeConsecutiveSpaces(String(value).trim());
 }
 export function simpleStringsAreEquals(text1, text2) {
-    return text1.localeCompare(text2, "en", { sensitivity: "base" });
+    return text1.localeCompare(text2, "en", { sensitivity: "base" }) === 0;
 }

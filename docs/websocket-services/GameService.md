@@ -54,22 +54,6 @@ Evento que emite el **adivino** para adivinar un caracter.
 }
 ```
 
-### Solicitar datos del juego (Master & Soothsayer)
-
-```js
-"user:request-game-data"
-```
-
-#### Descripción
-Evento que emite el **master** o **soothsayer** para solicitar los datos de la partida.
-
-#### Body
-
-```json
-// No emite con body
-```
-
-
 ### Notificar siguiente frase (Siguiente)
 
 ```js
@@ -91,7 +75,7 @@ Evento que emite el **master** o **soothsayer** para solicitar los datos de la p
 ### Reconectar al juego (Server)
 
 ```js
-"server:reconnect-to-game"
+"server:connect-to-game"
 ```
 
 #### Descripción
@@ -118,69 +102,57 @@ Evento que emite el **server** para enviar los datos de la partida a los jugador
 
 ```json
 {
+    "id": "x0xxx616X",
     "master": {
-        id: "x0kSAD26",
-        nickname: "leunknown"
+        "id": "x0kSAD26",
+        "nickname": "leunknown"
     },
     "soothsayer": {
-        id: "zCkSlDb0",
-        nickname: "eldiablo"
+        "id": "zCkSlDb0",
+        "nickname": "eldiablo"
     },
     "status": 3,
-    "phraseDataList": [
-        {
-            "phrase": "GIL",
-            "characterList": [
-                {
-                    value: "G",
-                    found: true,
-                    nextIsSpace: false
-                },
-                {
-                    value: "I",
-                    found: false,
-                    nextIsSpace: false
-                },
-                {
-                    value: "L",
-                    found: false,
-                    nextIsSpace: false
-                }
-            ],
-            "lifes": 6,
-            "usedKeys": ["A", "B", "G"]
-        }
-    ]
+    "currentPhraseData": {
+        "phrase": "GIL",
+        "dataCharacterList": [
+            {
+                value: "G",
+                found: true,
+                nextIsSpace: false
+            },
+            {
+                value: "I",
+                found: false,
+                nextIsSpace: false
+            },
+            {
+                value: "L",
+                found: false,
+                nextIsSpace: false
+            }
+        ],
+        "lifes": 6,
+        "usedKeys": ["A", "B", "G"]
+    }
 }
 ```
 
-### Notificar juego terminado al master (Server)
+### Notificar juego terminado al jugadores (Server)
 
 ```js
-"server:game-over-master"
+"server:game-over"
 ```
 
 #### Descripción
-Evento que emite el **server** al master para notificarle el juego terminado.
+Evento que emite el **server** a los jugadores para notificarle el juego terminado.
 
 ```json
 {
-    "win": true
+    "winner": "MASTER"
 }
 ```
-
-### Notificar juego terminado al adivino (Server)
-
-```js
-"server:game-over-soothsayer"
-```
-
-#### Descripción
-Evento que emite el **server** al adivino para notificarle el juego terminado.
-
 ```json
 {
-    "win": true,
-    "reveleadedPhrase": "GIL"
+    "winner": "SOOTHSAYER"
 }
 ```

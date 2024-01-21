@@ -1,3 +1,4 @@
+import GameWinner from "../../domain/GameWinner.js";
 import GameService from "./GameService.js";
 
 export default class SoothsayUseCase {
@@ -8,44 +9,21 @@ export default class SoothsayUseCase {
     constructor(gameService) {
         this.#gameService = gameService;
     }
-    #emitGameOver({ masterWins, reveleadedPhrase }) {
-        this.#gameService.server
-            .to(gameRoom.id)
-            .emit("server:game-over-master", {
-                win: masterWins
-            });
-        this.#gameService.server
-            .to(gameRoom.id)
-            .emit("server:game-over-soothsayer", {
-                win: !masterWins,
-                reveleadedPhrase
-            });
-    }
-    #emitNotifyNextPhrase(reveleadedPhrase) {
-        this.#gameService.server
-            .to(gameRoom.id)
-            .emit("server:notify-next-phrase", {
-                reveleadedPhrase
-            });
+    #finishGame(gameRoom, winner) {
+        gameRoom.finish(winner);
+        this.#gameService.removeGameRoom(gameRoom);
     }
     invoke(socket, body) {
         const gameRoom = this.#gameService.findGameRoom(socket);
         gameRoom.soothsay(body.key);
-        const currentPhraseData = gameRoom.getCurrentPhraseData();
-        const reveleadedPhrase = gameRoom.getCurrentPhrase()
+        const currentPhraseData = gameRoom.currentPhraseData;
         if (currentPhraseData.hanged()) 
-            this.#emitGameOver({
-                masterWins: true, 
-                reveleadedPhrase
-            });
-        if (currentPhraseData.phraseCompleted()) {
-            gameRoom.nextPhrase();
+            this.#finishGame(gameRoom, GameWinner.Master);
+        else if (currentPhraseData.phraseCompleted()) {
             if (gameRoom.soothsayerWins()) 
-                this.#emitGameOver({
-                    masterWins: false, 
-                    reveleadedPhrase
-                });
-            this.#emitNotifyNextPhrase(reveleadedPhrase);
+                this.#finishGame(gameRoom, GameWinner.Soothsayer);
+            else 
+                gameRoom.nextPhrase();
         }
         this.#gameService.emitSendGameDataEventToRoom(gameRoom);
     }

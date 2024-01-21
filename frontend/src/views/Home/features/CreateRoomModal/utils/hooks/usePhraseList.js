@@ -15,10 +15,13 @@ const usePhraseList = () => {
     const isNew = newPhrase => {
         return !phraseList.some(phrase => phrase === newPhrase);
     };
+    const clear = () => {
+        setPhraseList([]);
+    }
     return {
         value: phraseList,
         add, remove, 
-        isEmpty, isNew
+        isEmpty, isNew, clear
     };
 }	
     

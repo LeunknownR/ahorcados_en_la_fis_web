@@ -3,8 +3,8 @@ import { Container, Content, Input } from "./styles";
 const TextField = ({
     className, 
     label, placeholder, 
-    value, onChange, onFocus,
-    maxLength, decorator
+    value, onChange, onKeyDown, onFocus,
+    blockPaste, maxLength, decorator
 }) => {
     return (
         <Container className={className}>
@@ -15,7 +15,9 @@ const TextField = ({
                     value={value}
                     placeholder={placeholder}
                     onChange={onChange}
+                    onKeyDown={onKeyDown}
                     onFocus={onFocus}
+                    onPaste={blockPaste ? e => e.preventDefault() : null}
                     maxLength={maxLength}/>
                 {decorator}
             </Content>

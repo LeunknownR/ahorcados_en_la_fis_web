@@ -1,5 +1,6 @@
 import { TextField } from "../../../styles";
 import AddPhraseButton from "../AddPhraseButton";
+import { handleKeys } from "./utils/keys";
 
 const PhraseField = ({
     phrase, phraseList
@@ -14,7 +15,10 @@ const PhraseField = ({
             placeholder="Feliz jueves"
             value={phrase.value}
             onChange={phrase.change}
+            onKeyDown={handleKeys}
+            blockPaste
             onFocus={() => phrase.showErrorMessage.set(false)}
+            maxLength={30}
             decorator={
                 <AddPhraseButton 
                     phrase={phrase}

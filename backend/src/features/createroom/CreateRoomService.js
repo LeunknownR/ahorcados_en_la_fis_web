@@ -9,7 +9,7 @@ export default class CreateRoomController {
         this.#app = app;
         this.#gameRoomRepository = GameRoomRepository.getInstance();
     }
-    invoke(req, res) {
+    #invoke(req, res) {
         try {
             const payload = new CreateGameRoomPayload(req.body);
             const masterUser = this.#gameRoomRepository.create(payload);
@@ -26,6 +26,9 @@ export default class CreateRoomController {
         }
     }
     init() {
-        this.#app.post(this.#endpoint, this.invoke);
+        this.#app.post(
+            this.#endpoint, 
+            this.#invoke.bind(this)
+        );
     }
 }

@@ -9,13 +9,13 @@ export default class JoinRoomController {
         this.#app = app;
         this.#gameRoomRepository = GameRoomRepository.getInstance();
     }
-    invoke(req, res) {
+    #invoke(req, res) {
         try {
             const payload = new JoinRoomPayload(req.body);
             const gameRoom = this.#gameRoomRepository.find(payload.roomId);
             if (!gameRoom) {
                 res.status(404).json({
-                    message: "ROOM_NOT_FOUND",
+                    message: "NOT_FOUND_ROOM",
                     data: null
                 });
                 return;
@@ -44,6 +44,9 @@ export default class JoinRoomController {
         }
     }
     init() {
-        this.#app.post(this.#endpoint, this.invoke);
+        this.#app.post(
+            this.#endpoint, 
+            this.#invoke.bind(this)
+        );
     }
 }

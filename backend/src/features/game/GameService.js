@@ -27,26 +27,28 @@ export default class GameService {
     #connectUser(socket) {
         const socketData = this.getSocketData(socket);
         const gameRoom = this.#gameRoomRepository.find(socketData.roomId);
-        socket.emit("server:reconnect-to-game", {
+        if (!gameRoom) {
+            socket.disconnect();
+            console.log("Room not exists");
+            return;
+        }
+        socket.emit("server:connect-to-game", {
             isMaster: gameRoom.userIsMaster(socketData.userId)
         });
+        socket.join(gameRoom.id);
         this.emitSendGameDataEventToRoom(gameRoom);
     }
     #masterStartGame(socket) {
         const gameRoom = this.findGameRoom(socket);
         gameRoom.start();
-        emitSendGameDataEventToRoom(gameRoom);
-    }
-    /**
-     * @param {Socket} socket
-     */
-    #requestGameData(socket) {
-        const gameRoom = this.findGameRoom(socket);
-        socket.emit("server:send-game-data", gameRoom);
+        this.emitSendGameDataEventToRoom(gameRoom);
     }
     findGameRoom(socket) {
         const socketData = this.getSocketData(socket);
         return this.#gameRoomRepository.find(socketData.roomId);
+    }
+    removeGameRoom(gameRoom) {
+        this.#gameRoomRepository.remove(gameRoom.id);
     }
     emitSendGameDataEventToRoom(gameRoom) {
         this.server
@@ -59,10 +61,6 @@ export default class GameService {
             socket.on(
                 "master:start-game", 
                 () => this.#masterStartGame(socket)
-            );
-            socket.on(
-                "user:request-game-data", 
-                () => this.#requestGameData(socket)
             );
             socket.on(
                 "soothsayer:soothsay", 

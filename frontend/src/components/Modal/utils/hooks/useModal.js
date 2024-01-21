@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const useModal = () => {
-    const [show, setShow] = useState(false);
+const useModal = (defaultValue = false) => {
+    const [show, setShow] = useState(defaultValue);
     const open = () => {
         setShow(true);
     }

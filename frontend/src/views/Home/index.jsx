@@ -1,20 +1,23 @@
 import useModal from "../../components/Modal/utils/hooks/useModal";
 import TextField from "../../components/TextField";
-import RoomFullNotificationModal from "./components/RoomFullNotificationModal";
 import JoinRoomModal from "./features/JoinRoomModal";
 import CreateRoomModal from "./features/CreateRoomModal";
 import { AngelImage, Container, Footer, HomeButton } from "./styles";
 import useNickname from "./utils/hooks/useNickname";
 import HomeContext from "./utils/context/HomeContext";
-import Preloader from "../../components/Preloader";
-import usePreloader from "../../components/Preloader/utils/hooks/usePreloader";
+import useCheckGameData from "./utils/hooks/useCheckGameData";
 
+const Decoration = () => (
+    <>
+    <AngelImage/>
+    <AngelImage className="right"/>
+    </>
+);
 const Home = () => {
     const nickname = useNickname();
     const joinRoomModal = useModal();
     const createRoomModal = useModal();
-    const roomFullNotificationModal = useModal();
-    const preloader = usePreloader();
+    useCheckGameData();
     return (
         <HomeContext.Provider value={{
             nickname: nickname.value
@@ -25,7 +28,7 @@ const Home = () => {
                     className="big"
                     label="Escribe tu nickname"
                     placeholder="Longinus"
-                    maxLength={20}
+                    maxLength={16}
                     value={nickname.value}
                     onChange={nickname.change}/>
                 <Footer>
@@ -38,15 +41,14 @@ const Home = () => {
                         disabled={nickname.isEmpty()}
                         onClick={joinRoomModal.open}/>
                 </Footer>
-                {/* Decoration */}
-                <AngelImage/>
-                <AngelImage className="right"/>
-                {/* Modals */}
-                <CreateRoomModal modal={createRoomModal}/>
-                <JoinRoomModal modal={joinRoomModal}/>
-                <RoomFullNotificationModal modal={roomFullNotificationModal}/>
+                <Decoration/>
+                <CreateRoomModal
+                    modal={createRoomModal}
+                    nickname={nickname.value}/>
+                <JoinRoomModal 
+                    modal={joinRoomModal}
+                    nickname={nickname.value}/>
             </Container>
-            <Preloader show={preloader.show}/>
         </HomeContext.Provider>
     );
 }

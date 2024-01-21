@@ -23,7 +23,7 @@ POST `http://${host}/join-room`
 {
     "message": "SUCCESS",
     "data": {
-        "userId": "x0kSAD26",
+        "soothsayerNickname": "goku",
         "roomId": "p0ZoB1FwH6"
     }
 }
@@ -36,7 +36,10 @@ POST `http://${host}/join-room`
 ```json
 {
     "message": "INVALID_DATA",
-    "data": null
+    "data": {
+        "userId": "x0kSAD26",
+        "roomId": "p0ZoB1FwH6"
+    }
 }
 ```
 
@@ -57,7 +60,7 @@ POST `http://${host}/join-room`
 ```
 ```json
 {
-    "message": "ROOM_NOT_FOUND",
+    "message": "NOT_FOUND_ROOM",
     "data": null
 }
 ```
