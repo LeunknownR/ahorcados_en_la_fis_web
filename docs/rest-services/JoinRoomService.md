@@ -1,7 +1,7 @@
 # Join Room Service
 
 ```js
-POST `http://${host}/join-room`
+POST `http://${host}/api/join-room`
 ```
 
 ### Request

@@ -3,10 +3,10 @@ import GameRoomRepository from "../../data/GameRoomRepository.js";
 
 export default class CreateRoomController {
     #endpoint = "/create-room"
-    #app;
+    #router;
     #gameRoomRepository;
-    constructor(app) {
-        this.#app = app;
+    constructor(router) {
+        this.#router = router;
         this.#gameRoomRepository = GameRoomRepository.getInstance();
     }
     #invoke(req, res) {
@@ -26,7 +26,7 @@ export default class CreateRoomController {
         }
     }
     init() {
-        this.#app.post(
+        this.#router.post(
             this.#endpoint, 
             this.#invoke.bind(this)
         );

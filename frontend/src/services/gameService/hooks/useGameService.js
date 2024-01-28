@@ -2,7 +2,7 @@ import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import io, { Socket } from "socket.io-client";
 import GameStorage from "../../GameStorage";
 
-const SERVICE_URL = "ws://localhost:3002";
+const BACKEND_WS_URL = import.meta.env.VITE_BACKEND_WS_URL;
 const useGameService = () => {
     /**
      * @type {[Socket, Dispatch<SetStateAction<Socket>>]}
@@ -14,7 +14,8 @@ const useGameService = () => {
     function connect() {
         const gameData = GameStorage.getGameData();
         if (!gameData) return;
-        const socket = io(`${SERVICE_URL}/game`, {
+        const url = BACKEND_WS_URL || new URL(window.location).origin.replace("https://", "wss://");
+        const socket = io(`${url}/api/game`, {
             extraHeaders: {
                 "x-user-id": gameData.userId,
                 "x-room-id": gameData.roomId

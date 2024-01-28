@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-import { ExitButton } from "../components/styles";
 import RoomData from "../components/RoomData";
 import ShinjiWaiting from "./components/ShinjiWaiting";
 import WaitingRoomSoothsayer from "./features/WaitingRoomSoothsayer";
@@ -24,7 +23,6 @@ const WaitingRoom = () => {
         return null;
     return (
         <Container>
-            <ExitButton/>
             <RoomData nickname={getUserNickname()} roomId={gameData.id}/>
             <ShinjiWaiting/>
             {isMaster 

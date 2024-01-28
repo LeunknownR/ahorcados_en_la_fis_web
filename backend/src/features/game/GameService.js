@@ -3,7 +3,7 @@ import GameRoomRepository from "../../data/GameRoomRepository.js";
 import SoothsayUseCase from "./SoothsayUseCase.js";
 
 export default class GameService {
-    #namespace = "/game";
+    #namespace = "/api/game";
     #gameRoomRepository;
     #soothsayUseCase;
     /**

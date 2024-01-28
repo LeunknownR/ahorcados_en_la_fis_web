@@ -1,10 +1,11 @@
 export default class RestServices {
-    static #API_URL = "http://localhost:3002";
+    static #BACKEND_HTTP_URL = import.meta.env.VITE_BACKEND_HTTP_URL;
     static async #request({
         endpoint, method = "POST", body
     }) {
+        const url = RestServices.#BACKEND_HTTP_URL || new URL(window.location).origin;
         const response = await fetch(
-            `${RestServices.#API_URL}${endpoint}`, {
+            `${url}/api${endpoint}`, {
                 method,
                 body: JSON.stringify(body),
                 headers: {

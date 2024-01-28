@@ -72,7 +72,7 @@ Evento que emite el **master** o **soothsayer** para solicitar los datos de la p
 ```
 
 
-### Reconectar al juego (Server)
+### Conectar al juego (Server)
 
 ```js
 "server:connect-to-game"

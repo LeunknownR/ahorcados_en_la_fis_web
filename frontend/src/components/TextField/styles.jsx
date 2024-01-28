@@ -5,6 +5,7 @@ export const Input = styled.input`
     outline: none;
     border: 0;
     flex-grow: 1;
+    padding: 10px 15px;
     &::placeholder {
         color: var(--placeholder);
     }
@@ -14,11 +15,13 @@ export const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    padding: 10px 15px;
     border: 3px solid var(--primary-dark);
     transition: 0.25s;
     &:has(${Input}:focus) {
         box-shadow: 6px 6px var(--primary-dark);
+    }
+    & > *:not(:only-child) + * {
+        margin-right: 10px;
     }
 `;
 export const Container = styled.div`
@@ -31,7 +34,7 @@ export const Container = styled.div`
         font-weight: 600;
         font-size: 18px;        
     }
-    &.big ${Content} {
+    &.big ${Input} {
         padding: 15px;
     }
 `;

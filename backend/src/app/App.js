@@ -1,18 +1,18 @@
 import express from "express"; 
 import http from "http";
 import dotenv from "dotenv";
-import RESTServiceInitializer from "./RESTServiceInitializer.js";
+import ExpressInitializer from "./ExpressInitializer.js";
 import GameService from "../features/game/GameService.js"
 import { Server as WebSocketServer } from "socket.io";
 
 export default class App {
     #server;
-    #serviceInitializer;
+    #expressInitializer;
     #gameService;
     constructor() {
         const app = express();
         this.#server = http.createServer(app);
-        this.#serviceInitializer = new RESTServiceInitializer(app);
+        this.#expressInitializer = new ExpressInitializer(app);
         const websocketServer = new WebSocketServer(
             this.#server,
             {
@@ -30,7 +30,7 @@ export default class App {
     }
     init() {
         dotenv.config();
-        this.#serviceInitializer.init();
+        this.#expressInitializer.init();
         this.#gameService.init();
         this.#run();
     }

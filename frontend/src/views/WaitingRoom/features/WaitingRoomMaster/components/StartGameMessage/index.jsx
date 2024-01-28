@@ -1,4 +1,5 @@
 import { CardMessage, Divider } from "../../../../../../components/styles";
+import useGameContext from "../../../../../Game/utils/context/useGameContext";
 import { 
     Container,
     MessageWrapper, 
@@ -6,13 +7,13 @@ import {
     SoothsayerAboutMessage 
 } from "./styles";
 
-const nickname = "lilpepetuterror666";
 const StartGameMessage = () => {
+    const { gameData } = useGameContext();
     return (
         <Container>
-            <SoothsayerAboutMessage title={nickname}>
+            <SoothsayerAboutMessage title={gameData.soothsayer.nickname}>
                 Ingresó el adivino<br/>
-                <strong>{nickname}</strong>
+                <strong>{gameData.soothsayer.nickname}</strong>
             </SoothsayerAboutMessage>
             <Divider/>
             <MessageWrapper>

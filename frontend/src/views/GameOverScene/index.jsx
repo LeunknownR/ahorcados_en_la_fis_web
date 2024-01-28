@@ -1,4 +1,3 @@
-import { ExitButton } from "../components/styles";
 import { Container } from "./styles";
 import RoomData from "../components/RoomData";
 import MasterWinScene from "./features/MasterWinScene";
@@ -9,15 +8,14 @@ import GameRoomStatus from "../../services/gameService/GameRoomStatus";
 import useGameContext from "../Game/utils/context/useGameContext";
 import GameWinner from "../../../../backend/src/domain/GameWinner";
 
-const nickname = "leunknownr", roomId = "p0ZoB1FwH6";
 const GameOverScene = () => {
     const { gameData, isMaster } = useGameContext();
     if (gameData.status !== GameRoomStatus.GameOver)
         return null;
+    const nickname = isMaster ? gameData.master.nickname :gameData.soothsayer.nickname;
     return (
         <Container>
-            <ExitButton/>
-            <RoomData nickname={nickname} roomId={roomId}/>   
+            <RoomData nickname={nickname} roomId={gameData.id}/>   
             {gameData.winner === GameWinner.Master 
             && (
                 isMaster 

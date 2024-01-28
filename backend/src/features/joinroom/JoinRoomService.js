@@ -3,10 +3,10 @@ import JoinRoomPayload from "./JoinRoomPayload.js";
 
 export default class JoinRoomController {
     #endpoint = "/join-room"
-    #app;
+    #router;
     #gameRoomRepository;
-    constructor(app) {
-        this.#app = app;
+    constructor(router) {
+        this.#router = router;
         this.#gameRoomRepository = GameRoomRepository.getInstance();
     }
     #invoke(req, res) {
@@ -44,7 +44,7 @@ export default class JoinRoomController {
         }
     }
     init() {
-        this.#app.post(
+        this.#router.post(
             this.#endpoint, 
             this.#invoke.bind(this)
         );
