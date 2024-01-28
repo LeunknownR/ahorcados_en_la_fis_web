@@ -18,7 +18,7 @@ const PhraseField = ({
             onKeyDown={handleKeys}
             blockPaste
             onFocus={() => phrase.showErrorMessage.set(false)}
-            maxLength={30}
+            maxLength={50}
             decorator={
                 <AddPhraseButton 
                     phrase={phrase}
